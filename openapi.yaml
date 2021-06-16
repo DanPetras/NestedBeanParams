@@ -1,0 +1,57 @@
+openapi: 3.0.1
+paths:
+  /api/nested:
+    get:
+      operationId: nested
+      requestBody:
+        content:
+          '*/*':
+            schema:
+              $ref: '#/components/schemas/NestedParams'
+      responses:
+        default:
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: default response
+      summary: Nested BeanParams
+  /api/normal:
+    get:
+      operationId: normal
+      parameters:
+      - description: requested page
+        in: query
+        name: page
+        schema:
+          type: integer
+          format: int32
+          default: -1
+      - description: requested page size
+        in: query
+        name: size
+        schema:
+          type: integer
+          format: int32
+      - description: requested sorting field
+        in: query
+        name: sort
+        schema:
+          type: string
+      - description: requested sorting direction
+        in: query
+        name: desc
+        schema:
+          type: boolean
+      responses:
+        default:
+          content:
+            text/plain:
+              schema:
+                type: string
+          description: default response
+      summary: Single level BeanParams
+components:
+  schemas:
+    NestedParams:
+      type: object
